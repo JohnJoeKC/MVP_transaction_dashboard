@@ -98,7 +98,7 @@
           </section>
       </main>
 
-      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD4Ck5BdPtF+to8xMp9Q9mls" crossorigin="anonymous"></script>
 
       <script>
             require.config({
@@ -207,6 +207,7 @@
 
             document.getElementById("personal-access-token").addEventListener("input", async (event) => {
                 const personalAccessToken = event.target.value;
+                console.log("Token input event triggered"); // Add this line
                 if (personalAccessToken.length === 40) {
                     try {
                         const files = await fetchRepositoryContent("JohnJoeKC", "transaction-dashboard", personalAccessToken);
