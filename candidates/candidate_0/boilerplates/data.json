@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "date": "2023-01-01",
+      "description": "Grocery store",
+      "amount": -50.25
+    },
+    {
+      "id": 2,
+      "date": "2023-01-03",
+      "description": "Salary",
+      "amount": 1500.00
+    },
+    {
+      "id": 3,
+      "date": "2023-01-05",
+      "description": "Electricity bill",
+      "amount": -65.80
+    }
+  ]
+  
