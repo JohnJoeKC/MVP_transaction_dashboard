@@ -204,18 +204,21 @@
 
                 return await response.json();
             }
-
-            document.getElementById("personal-access-token").addEventListener("input", async (event) => {
-                const personalAccessToken = event.target.value;
-                console.log("Token input event triggered"); // Add this line
-                if (personalAccessToken.length === 40) {
-                    try {
-                        const files = await fetchRepositoryContent("JohnJoeKC", "transaction-dashboard", personalAccessToken);
-                        populateFileSelect(files);
-                    } catch (error) {
-                        console.error("Error fetching repository content:", error);
-                    }
+            
+            async function fetchAndPopulateFiles(personalAccessToken) {
+              if (personalAccessToken.length === 40) {
+                try {
+                  const files = await fetchRepositoryContent("JohnJoeKC", "transaction-dashboard", personalAccessToken);
+                  populateFileSelect(files);
+                } catch (error) {
+                  console.error("Error fetching repository content:", error);
                 }
+              }
+            }
+
+                        document.getElementById("personal-access-token").addEventListener("input", async (event) => {
+              const personalAccessToken = event.target.value;
+              await fetchAndPopulateFiles(personalAccessToken);
             });
 
             function populateFileSelect(files) {
