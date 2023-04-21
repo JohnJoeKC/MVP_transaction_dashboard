@@ -214,7 +214,10 @@
                   console.error("Error fetching repository content:", error);
                 }
               }
-            }
+              }
+
+              // Add this line to call fetchAndPopulateFiles when the page loads
+              fetchAndPopulateFiles(document.getElementById("personal-access-token").value);
 
                         document.getElementById("personal-access-token").addEventListener("input", async (event) => {
               const personalAccessToken = event.target.value;
