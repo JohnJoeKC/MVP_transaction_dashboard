@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { execPythonCode, callOpenAI } = require('./candidates/candidate_0/boilerplates/helpers.js');
+const { execPythonCode, callOpenAI } = require('./candidates/candidate_0/boilerplates/helper.js');
 
 const app = express();
 
