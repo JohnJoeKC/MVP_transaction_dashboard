@@ -217,7 +217,9 @@
               }
 
               // Add this line to call fetchAndPopulateFiles when the page loads
-              fetchAndPopulateFiles(document.getElementById("personal-access-token").value);
+              document.addEventListener("DOMContentLoaded", async () => {
+                await fetchAndPopulateFiles(document.getElementById("personal-access-token").value);
+              });
 
                         document.getElementById("personal-access-token").addEventListener("input", async (event) => {
               const personalAccessToken = event.target.value;
