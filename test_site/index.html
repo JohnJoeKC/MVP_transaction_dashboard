@@ -271,21 +271,21 @@
             const iframeDoc = outputIframe.contentWindow.document;
 
             iframeDoc.open();
-            iframeDoc.write(`
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <style>${cssContent}</style>
-              </head>
-              <body>
-                ${htmlContent}
-                <script>${jsContent}</script>
-              </body>
-              </html>
-            `);
-            iframeDoc.close();
+              iframeDoc.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>${cssContent}</style>
+                </head>
+                <body>
+                    ${htmlContent}
+                    <script>${jsContent}<` + `/script>
+                </body>
+                <` + `/html>
+              `);
+              iframeDoc.close();
           } catch (error) {
             console.error("Error fetching file content:", error);
           }
