@@ -75,8 +75,6 @@
             <h2 class="section-title">Code here</h2>
             <label for="personal-access-token" class="form-label">GitHub Personal Access Token:</label>
             <input id="personal-access-token" class="form-control mb-3" type="password" placeholder="Enter your token here">
-            <select id="language-select" class="form-select mb-3">
-              <option value="javascript" selected>JavaScript</option>
             </select>
             <select id="file-select" class="form-select mb-3">
               <!-- Dynamically populate options here -->
@@ -257,7 +255,44 @@
           }
         }
 
-        document.getElementById("commit-push").addEventListener("click", async () => {
+        async function displayOutput() {
+          const iframe = document.getElementById("output-iframe");
+          const personalAccessToken = document.getElementById("personal-access-token").value;
+
+          if (!personalAccessToken) {
+            alert("Please enter your GitHub personal access token.");
+            return;
+          }
+
+          const htmlPath = 'candidates/candidate_0/task/index.html';
+          const cssPath = 'candidates/candidate_0/task/style.css';
+          const jsPath = 'candidates/candidate_0/task/script.js';
+
+          const htmlContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", htmlPath, personalAccessToken);
+          const cssContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", cssPath, personalAccessToken);
+          const jsContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", jsPath, personalAccessToken);
+
+          const iframeContent = `
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <style>${cssContent}</style>
+              </head>
+              <body>
+                ${htmlContent}
+                <script>${jsContent}<\/script>
+              </body>
+            </html>
+          `;
+
+          const blob = new Blob([iframeContent], { type: 'text/html' });
+          const url = URL.createObjectURL(blob);
+
+          iframe.src = url;
+          iframe.classList.remove("d-none");
+}
+
+document.getElementById("commit-push").addEventListener("click", async () => {
           const filePath = document.getElementById("file-select").value;
           const personalAccessToken = document.getElementById("personal-access-token").value;
 
@@ -275,6 +310,10 @@
           } catch (error) {
             console.error("Error committing and pushing changes:", error);
           }
+        });
+
+        document.getElementById("run-code").addEventListener("click", () => {
+          displayOutput();
         });
 
     </script>
