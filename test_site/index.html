@@ -291,8 +291,7 @@
           }
         }
 
-
-document.getElementById("commit-push").addEventListener("click", async () => {
+        document.getElementById("commit-push").addEventListener("click", async () => {
           const filePath = document.getElementById("file-select").value;
           const personalAccessToken = document.getElementById("personal-access-token").value;
 
@@ -318,41 +317,40 @@ document.getElementById("commit-push").addEventListener("click", async () => {
 
     </script>
 
-          // Openai functionality
-          <script>
-              document.getElementById("generate-text").addEventListener("click", async () => {
-            const promptText = document.getElementById("prompt").value;
+    <script>
+      document.getElementById("generate-text").addEventListener("click", async () => {
+          const promptText = document.getElementById("prompt").value;
 
-            if (promptText.trim() === "") {
-                alert("Please enter a prompt.");
-                return;
-            }
+          if (promptText.trim() === "") {
+              alert("Please enter a prompt.");
+              return;
+          }
 
-            // Add AI context
-            const aiContext = "You are a helpful assistant. ";
-            const fullPrompt = aiContext + promptText;
+          // Add AI context
+          const aiContext = "You are a helpful assistant. ";
+          const fullPrompt = aiContext + promptText;
 
-            try {
-                const response = await fetch('/openai', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ prompt: fullPrompt }) // Use fullPrompt instead of prompt
-                });
+          try {
+              const response = await fetch('/openai', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ prompt: fullPrompt }) // Use fullPrompt instead of prompt
+              });
 
-                const result = await response.json();
+              const result = await response.json();
 
-                if (result.error) {
-                    alert("Error: " + result.error);
-                } else {
-                    document.getElementById("generated-text").value = result.text;
-                }
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        });
-          </script>
-          </body>
+              if (result.error) {
+                  alert("Error: " + result.error);
+              } else {
+                  document.getElementById("generated-text").value = result.text;
+              }
+          } catch (error) {
+              console.error("Error:", error);
+          }
+      });
+      </script>
+      </body>
 
-          </html>
+      </html>
