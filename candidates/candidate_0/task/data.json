@@ -16,6 +16,24 @@
       "date": "2023-01-05",
       "description": "Electricity bill",
       "amount": -65.80
+    },
+    {
+      "id": 4,
+      "date": "2023-01-05",
+      "description": "Grocery store",
+      "amount": -50.25
+    },
+    {
+      "id": 5,
+      "date": "2023-01-07",
+      "description": "Dividends",
+      "amount": 20.00
+    },
+    {
+      "id": 6,
+      "date": "2023-01-12",
+      "description": "Deposit to savings account",
+      "amount": -40.00
     }
   ]
   
