@@ -121,21 +121,31 @@
         });
     
         document.getElementById("file-select").addEventListener("change", async (event) => {
-            const filePath = event.target.value;
-            const personalAccessToken = document.getElementById("personal-access-token").value;
+          const filePath = event.target.value;
+          const personalAccessToken = document.getElementById("personal-access-token").value;
+
+          if (!personalAccessToken) {
+            alert("Please enter your GitHub personal access token.");
+            return;
+          }
+
+          try {
             const fileContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", filePath, personalAccessToken);
             editor.setValue(fileContent);
-    
+
             const fileExtension = filePath.split('.').pop();
             const languageMapping = {
-                'js': 'javascript',
-                'html': 'html',
-                'css': 'css',
+              'js': 'javascript',
+              'html': 'html',
+              'css': 'css',
             };
             const language = languageMapping[fileExtension] || 'plaintext';
             monaco.editor.setModelLanguage(editor.getModel(), language);
+          } catch (error) {
+            console.error("Error fetching file content:", error);
+          }
         });
-    
+
         // Add the rest of your existing event listeners and functions here
     
         // Modify the fetchRepositoryContent function to include a path parameter
