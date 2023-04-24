@@ -223,7 +223,7 @@
         async function commitAndPushChanges(repoOwner, repoName, filePath, fileContent, commitMessage, personalAccessToken) {
           const base64FileContent = btoa(fileContent);
           const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-          const commitMessage = document.getElementById("commit-message").value || "Update file";
+          commitMessage = document.getElementById("commit-message").value || "Update file";
 
           // Get the current commit
           const currentCommitResponse = await fetch(url, {
