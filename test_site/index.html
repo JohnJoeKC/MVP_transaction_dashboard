@@ -256,41 +256,41 @@
         }
 
         async function displayOutput() {
-          const iframe = document.getElementById("output-iframe");
           const personalAccessToken = document.getElementById("personal-access-token").value;
+          const htmlPath = "candidates/candidate_0/task/index.html";
+          const cssPath = "candidates/candidate_0/task/style.css";
+          const jsPath = "candidates/candidate_0/task/script.js";
 
-          if (!personalAccessToken) {
-            alert("Please enter your GitHub personal access token.");
-            return;
-          }
+          try {
+            const htmlContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", htmlPath, personalAccessToken);
+            const cssContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", cssPath, personalAccessToken);
+            const jsContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", jsPath, personalAccessToken);
 
-          const htmlPath = 'candidates/candidate_0/task/index.html';
-          const cssPath = 'candidates/candidate_0/task/style.css';
-          const jsPath = 'candidates/candidate_0/task/script.js';
+            const outputIframe = document.getElementById("output-iframe");
+            outputIframe.classList.remove("d-none");
+            const iframeDoc = outputIframe.contentWindow.document;
 
-          const htmlContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", htmlPath, personalAccessToken);
-          const cssContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", cssPath, personalAccessToken);
-          const jsContent = await fetchFileContent("JohnJoeKC", "MVP_transaction_dashboard", jsPath, personalAccessToken);
-
-          const iframeContent = `
-            <!DOCTYPE html>
-            <html>
+            iframeDoc.open();
+            iframeDoc.write(`
+              <!DOCTYPE html>
+              <html lang="en">
               <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <style>${cssContent}</style>
               </head>
               <body>
                 ${htmlContent}
-                <script>${jsContent}<\/script>
+                <script>${jsContent}</script>
               </body>
-            </html>
-          `;
+              </html>
+            `);
+            iframeDoc.close();
+          } catch (error) {
+            console.error("Error fetching file content:", error);
+          }
+        }
 
-          const blob = new Blob([iframeContent], { type: 'text/html' });
-          const url = URL.createObjectURL(blob);
-
-          iframe.src = url;
-          iframe.classList.remove("d-none");
-}
 
 document.getElementById("commit-push").addEventListener("click", async () => {
           const filePath = document.getElementById("file-select").value;
