@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="custom-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs/editor/editor.main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs/loader.js"></script>
+    
     <style>
       .main-content {
           display: flex;
@@ -51,9 +52,8 @@
       </header>
 
       <main>
-        <!-- Introduction -->
-        <section class="container main-content">
-          <div class="left-column">
+        <!-- Instructions -->
+        <section class="container">
             <h2 class="section-title">Instruções de teste</h2>
             <p>Leia a tarefa abaixo e use o IDE para codificar a solução. Você tem 30 minutos para concluir a tarefa.</p>
             <p>Crie um painel de transações que exiba o número total de transações, o valor total das transações e o valor médio das transações. Use o conjunto de dados fornecido no arquivo data.json e o código base no repositório GitHub.
@@ -63,7 +63,29 @@
               <br>3. Certifique-se de que o painel seja visualmente atraente e fácil de entender.
               <br>4. Envie seu código, fazendo push para o repositório GitHub fornecido.</p>
             <a href="https://github.com/JohnJoeKC/transaction-dashboard" target="_blank" class="btn btn-primary mb-3">Access GitHub Repository</a>
-            <h4>Output</h4>
+            </section>
+
+             <!-- Main content -->
+               <section class="container main-content">
+                <div class="left-column">
+                  <h2 class="section-title">Code here</h2>
+                    <label for="personal-access-token" class="form-label">GitHub Personal Access Token:</label>
+                    <input id="personal-access-token" class="form-control mb-3" type="password" placeholder="Enter your token here">
+                    </select>
+                    <select id="file-select" class="form-select mb-3">
+                      <!-- Dynamically populate options here -->
+                    </select>
+                    <div id="monaco-editor-container" style="padding: 10px; height: 400px; overflow: hidden;"></div>
+                <button id="run-code" class="btn btn-primary mt-3">Run Code</button>
+                <div class="commit-container">
+                    <label for="commit-message" class="form-label">Commit message:</label>
+                    <input id="commit-message" class="form-control mb-3" type="text" placeholder="Enter commit message here">
+                    <button id="commit-push">Commit and Push Changes</button>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                  <h4>Output</h4>
             <div id="output-container" class="mt-3" style="border: 1px solid black; padding: 10px; height: 150px; overflow: auto;">
               <div id="output"></div>
               <iframe id="output-iframe" class="d-none" style="width: 100%; height: 100%;"></iframe>
@@ -76,22 +98,8 @@
               <button id="submit-explanation" class="btn btn-primary">Submit Explanation</button>
             </div>
           </div>
-          <div class="right-column">
-            <h2 class="section-title">Code here</h2>
-            <label for="personal-access-token" class="form-label">GitHub Personal Access Token:</label>
-            <input id="personal-access-token" class="form-control mb-3" type="password" placeholder="Enter your token here">
-            </select>
-            <select id="file-select" class="form-select mb-3">
-              <!-- Dynamically populate options here -->
-            </select>
-            <div id="monaco-editor-container" style="padding: 10px; height: 400px; overflow: hidden;"></div>
-        <button id="run-code" class="btn btn-primary mt-3">Run Code</button>
-        <div class="commit-container">
-            <label for="commit-message" class="form-label">Commit message:</label>
-            <input id="commit-message" class="form-control mb-3" type="text" placeholder="Enter commit message here">
-            <button id="commit-push">Commit and Push Changes</button>
-        </div>
-    </div>
+            
+          <!-- OpenAI API -->
         </section>         
           <section class="container mt-5">
             <h2 class="section-title">OpenAI API Interaction</h2>
