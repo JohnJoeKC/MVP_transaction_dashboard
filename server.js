@@ -48,3 +48,34 @@ app.post('/openai', async (req, res) => {
       res.json({ error: error.toString() });
     }
 });
+
+const fetch = require('node-fetch');
+
+app.get('/repo-content', async (req, res) => {
+  const personalAccessToken = req.query.token;
+  const path = req.query.path || "candidates/candidate_0/task";
+
+  try {
+    const files = await fetchRepositoryContent("JohnJoeKC", "MVP_transaction_dashboard", path, personalAccessToken);
+    res.json(files);
+  } catch (error) {
+    console.error("Error fetching repository content:", error);
+    res.status(500).json({ error: error.toString() });
+  }
+});
+
+async function fetchRepositoryContent(owner, repo, path, personalAccessToken) {
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Authorization': `token ${personalAccessToken}`
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status}`);
+  }
+
+  return await response.json();
+}
