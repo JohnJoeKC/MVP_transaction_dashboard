@@ -82,9 +82,13 @@
               <!-- Dynamically populate options here -->
             </select>
             <div id="monaco-editor-container" style="padding: 10px; height: 400px; overflow: hidden;"></div>
-            <button id="run-code" class="btn btn-primary mt-3">Run Code</button>
+        <button id="run-code" class="btn btn-primary mt-3">Run Code</button>
+        <div class="commit-container">
+            <label for="commit-message" class="form-label">Commit message:</label>
+            <input id="commit-message" class="form-control mb-3" type="text" placeholder="Enter commit message here">
             <button id="commit-push">Commit and Push Changes</button>
-          </div>
+        </div>
+    </div>
         </section>         
           <section class="container mt-5">
             <h2 class="section-title">OpenAI API Interaction</h2>
