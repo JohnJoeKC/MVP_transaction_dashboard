@@ -157,14 +157,15 @@
 
         // Update fetchAndPopulateFiles to provide the correct path to the candidate folder
         async function fetchAndPopulateFiles(personalAccessToken) {
-            if (personalAccessToken.length === 40) {
-                try {
-                    const files = await fetchRepositoryContent("JohnJoeKC", "MVP_transaction_dashboard", "candidates/candidate_0/task", personalAccessToken);
-                    populateFileSelect(files);
-                } catch (error) {
-                    console.error("Error fetching repository content:", error);
-                }
+          if (personalAccessToken.length === 40) {
+            try {
+              const response = await fetch(`/repo-content?token=${personalAccessToken}`);
+              const files = await response.json();
+              populateFileSelect(files);
+            } catch (error) {
+              console.error("Error fetching repository content:", error);
             }
+          }
         }
   
         document.addEventListener("DOMContentLoaded", async () => {
