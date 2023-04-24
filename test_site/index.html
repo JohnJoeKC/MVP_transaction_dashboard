@@ -189,6 +189,24 @@
             const decodedContent = atob(fileData.content);
             return decodedContent;
         }
+        
+        function populateFileSelect(files) {
+          const fileSelect = document.getElementById("file-select");
+
+          // Clear previous options
+          while (fileSelect.firstChild) {
+            fileSelect.removeChild(fileSelect.firstChild);
+          }
+
+          // Create and append new options
+          files.forEach(file => {
+            const option = document.createElement("option");
+            option.value = file.path;
+            option.textContent = file.name;
+            fileSelect.appendChild(option);
+          });
+        }
+
     </script>
     
           <script>
