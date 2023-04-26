@@ -194,10 +194,6 @@
           }
         }
 
-        document.addEventListener("DOMContentLoaded", async () => {
-          await fetchAndPopulateFilesDirectly();
-        });
-
         async function fetchFileContent(owner, repo, filePath, personalAccessToken) {
             const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
             const response = await fetch(url, {
