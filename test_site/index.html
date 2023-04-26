@@ -109,7 +109,6 @@
         background-color: #007bff;
         color: #fff;
       }
-
     </style> 
 
   <script src="https://cdn.openai.com/openai.min.js"></script>
@@ -121,13 +120,19 @@
    <!-- Candidate identifier -->
   <div id="candidate-input-container">
     <label for="candidate-number" class="form-label">Candidate number:</label>
-    <input id="candidate-number" class="form-control mb-3" type="text" placeholder="Enter your candidate number here">
+    <input id="candidate-number" class="form-control mb-3" type="text" minlength="4" placeholder="Enter your candidate number here">
     <button id="submit-candidate-number" class="btn btn-primary">Submit</button>
   </div>
   
    <!-- Multiple choice section -->
   <div id="multiple-choice-container" style="display: none;">
-    <!-- Add your multiple choice questions here -->
+    <div class="multiple-choice-question">
+      <p>Question 1: What is the capital of Brazil?</p>
+      <div class="multiple-choice-option">Rio de Janeiro</div>
+      <div class="multiple-choice-option">São Paulo</div>
+      <div class="multiple-choice-option">Brasília</div>
+      <div class="multiple-choice-option">Salvador</div>
+    </div>
     <button id="submit-multiple-choice" class="btn btn-primary mt-3">Submit</button>
   </div>
   
@@ -198,13 +203,25 @@
     
       <script>
 
-        // Candidate number step
-        document.getElementById('submit-candidate-number').addEventListener('click', function() {
-          document.getElementById('candidate-input-container').style.display = 'none';
-          document.getElementById('multiple-choice-container').style.display = 'block';
+        // Candidate number event
+        document.getElementById('candidate-number').addEventListener('keydown', function(event) {
+          if (event.key === 'Enter') {
+            submitCandidateNumber();
+          }
         });
 
-        // Multiple choice step
+        document.getElementById('submit-candidate-number').addEventListener('click', submitCandidateNumber);
+
+        function submitCandidateNumber() {
+          if (document.getElementById('candidate-number').value.length >= 4) {
+            document.getElementById('candidate-input-container').style.display = 'none';
+            document.getElementById('multiple-choice-container').style.display = 'block';
+          } else {
+            alert('Candidate number must be at least 4 digits.');
+          }
+        }
+
+        // Multiple choice event
         document.getElementById('submit-multiple-choice').addEventListener('click', function() {
           document.getElementById('multiple-choice-container').style.display = 'none';
           document.getElementById('test-content').style.display = 'block';

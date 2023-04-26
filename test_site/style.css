@@ -1,0 +1,98 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #4a4a4a;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.main-content .left-column,
+.main-content .right-column {
+    flex: 1;
+    min-width: 300px;
+    padding: 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input, select, textarea, button {
+    border-radius: 4px;
+}
+
+button {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#output-container {
+    height: 400px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow: auto;
+}
+
+#explanation-container {
+    margin-top: 1rem;
+}
+
+.commit-container {
+    margin-top: 1rem;
+}
+
+#candidate-input-container,
+#multiple-choice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.multiple-choice-question {
+  margin-bottom: 1rem;
+}
+
+.multiple-choice-option {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.multiple-choice-option:hover {
+  background-color: #eee;
+}
+
+.multiple-choice-option.selected {
+  background-color: #007bff;
+  color: #fff;
+}
