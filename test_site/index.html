@@ -77,6 +77,39 @@
       .commit-container {
           margin-top: 1rem;
       }
+
+      #candidate-input-container,
+      #multiple-choice-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .multiple-choice-question {
+        margin-bottom: 1rem;
+      }
+
+      .multiple-choice-option {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .multiple-choice-option:hover {
+        background-color: #eee;
+      }
+
+      .multiple-choice-option.selected {
+        background-color: #007bff;
+        color: #fff;
+      }
+
     </style> 
 
   <script src="https://cdn.openai.com/openai.min.js"></script>
@@ -84,22 +117,23 @@
 </head>
 
 <body>
-    <!-- Header and Navigation -->
-    <!-- ... -->
-
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
-            <a class="navbar-brand" href="index.html">Stamp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <main>
-        <!-- Instructions -->
+    
+   <!-- Candidate identifier -->
+  <div id="candidate-input-container">
+    <label for="candidate-number" class="form-label">Candidate number:</label>
+    <input id="candidate-number" class="form-control mb-3" type="text" placeholder="Enter your candidate number here">
+    <button id="submit-candidate-number" class="btn btn-primary">Submit</button>
+  </div>
+  
+   <!-- Multiple choice section -->
+  <div id="multiple-choice-container" style="display: none;">
+    <!-- Add your multiple choice questions here -->
+    <button id="submit-multiple-choice" class="btn btn-primary mt-3">Submit</button>
+  </div>
+  
+  <!-- Coding test -->
+    <div id="test-content" style="display: none;">
+       <!-- Instructions -->
         <section class="container">
             <h2 class="section-title">Instruções de teste</h2>
             <p>Leia a tarefa abaixo e use o IDE para codificar a solução. Você tem 30 minutos para concluir a tarefa.</p>
@@ -158,8 +192,8 @@
               <textarea id="generated-text" class="form-control" readonly></textarea>
             </div>
           </section>
-      </main>
-
+        </div>    
+    
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     
       <script>
