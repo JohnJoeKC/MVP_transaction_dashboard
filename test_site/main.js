@@ -1,22 +1,24 @@
 let editor;
 
-function initMonacoEditor() {
-  require.config({
-    paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs' },
+require.config({
+  paths: {
+    'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs'
+  }
+});
+
+require(['vs/editor/editor.main'], function () {
+  editor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
+    value: [
+      'print("Hello, world!")',
+    ].join('\n'),
+    language: 'python'
   });
 
-  require(['vs/editor/editor.main'], function () {
-    editor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
-      value: 'print("Hello, world!")',
-      language: 'python',
-      theme: 'vs-dark',
-      automaticLayout: true,
-    });
+  editor.updateOptions({ theme: 'vs-dark' });
 
-    // Call fetchAndPopulateFilesDirectly() once, after editor initialization
-    fetchAndPopulateFilesDirectly();
-  });
-}
+  // Call fetchAndPopulateFilesDirectly() once, after editor initialization
+  fetchAndPopulateFilesDirectly();
+});
 
 initMonacoEditor();
 
