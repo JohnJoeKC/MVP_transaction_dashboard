@@ -180,20 +180,6 @@
             return await response.json();
         }
 
-        async function fetchAndPopulateFilesDirectly() {
-          const repoOwner = "JohnJoeKC";
-          const repoName = "MVP_transaction_dashboard";
-          const taskFolderPath = "candidates/candidate_0/task";
-          
-          try {
-            const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${taskFolderPath}`);
-            const files = await response.json();
-            populateFileSelect(files);
-          } catch (error) {
-            console.error("Error fetching repository content:", error);
-          }
-        }
-
         async function fetchFileContent(owner, repo, filePath, personalAccessToken) {
             const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
             const response = await fetch(url, {
@@ -361,8 +347,6 @@
           }
       });
       </script>
-
-      <script src="main.js"></script>
 
       </body>
 
