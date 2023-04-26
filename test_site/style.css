@@ -96,3 +96,9 @@ button:hover {
   background-color: #007bff;
   color: #fff;
 }
+
+.monaco-editor-container {
+    background-color: #1e1e1e;
+    min-height: 300px;
+  }
+  
